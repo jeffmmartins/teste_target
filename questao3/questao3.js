@@ -127,4 +127,14 @@ const menorValor = valores.reduce((min, valor) => valor < min ? valor : min, Num
 console.log("O menor valor de faturamento em um dia do mês é:", menorValor);
 
 // Maior valor 
+const valoresFaturamento = faturamento.map(item => item.valor).filter(valor => valor > 0);
+const maiorValor = valoresFaturamento.reduce((max, valor) => valor > max ? valor : max, Number.MIN_VALUE);
+console.log("O menor valor de faturamento em um dia do mês é:", maiorValor);
 
+// Média Mensal 
+const valoresFaturamentos = faturamento.map(item => item.valor).filter(valor => valor > 0);
+const somaTotal = valoresFaturamentos.reduce((total, valor) => total + valor, 0);
+const mediaMensal = somaTotal / valoresFaturamentos.length;
+const diasAcimaDaMedia = faturamento.filter(item => item.valor > mediaMensal).length;
+console.log("A média mensal de faturamento é:", mediaMensal.toFixed(2));
+console.log("Número de dias com faturamento acima da média mensal:", diasAcimaDaMedia);
